@@ -13,20 +13,16 @@ for row in range(0, rows):
 		board[row][col]="0"
 
 def pressedUp(event):
-	print("pressed up")
-	piece_col[0]-=1
-
-def pressedDown(event):
-	print("pressed down")
-	piece_col[0]+=1
-
-def pressedLeft(event):
-	print("pressed left")
 	piece_row[0]-=1
 
-def pressedRight(event):
-	print("pressed right")
+def pressedDown(event):
 	piece_row[0]+=1
+
+def pressedLeft(event):
+	piece_r=col[0]-=1
+
+def pressedRight(event):
+	piece_col[0]+=1
 
 def setDirection():
 	root.bind_all("<Up>", pressedUp)
@@ -43,16 +39,16 @@ def getPiece():
 	return board_dic.keys()[board_dic.values().index("~")]
 """
 def displayBoard():
-	for r in board:
-		for c in board[r]:
+	for r in range(len(board)):
+		for c in range(len(board[r])):
 			if(board[r][c] == "~"):
-				Tkinter.Label(root, bg="white", borderwidth=1, height=1,width=2).grid(row=k[:1], column=k[1:])
+				Tkinter.Label(root, bg="white", borderwidth=1, height=1,width=2).grid(row=r, column=c)
 			else:
-				Tkinter.Label(root, bg="black", borderwidth=1, height=1,width=2).grid(row=k[:1],column=k[1:])
+				Tkinter.Label(root, bg="black", borderwidth=1, height=1,width=2).grid(row=r,column=c)
 		
 def clearBoard():
-	for r in board:
-		for c in board[r]:
+	for r in range(len(board)):
+		for c in range(len(board[r])):
 			board[r][c] = "0"
 
 def updateBoard():
@@ -74,4 +70,4 @@ root.mainloop()
 
 # main issue: encounters lag when return
 # prognosis: Tkinter module too extensive, consider paring down only essential imports. 
-# for reference as main in snake game
+# for use as main in snake game
